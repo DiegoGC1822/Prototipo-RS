@@ -1,13 +1,11 @@
-import ud from "../assets/university-day.svg";
-
-export const GameLayout = ({ children }) => {
+export const MainLayout = ({ children, background, color }) => {
   return (
     <div
       className="game-layout"
       style={{
         display: "flex",
         justifyContent: "center",
-        backgroundImage: `url(${ud})`,
+        backgroundImage: `url(${background})`,
         backgroundSize: "cover",
         height: "100vh",
         backgroundRepeat: "no-repeat",
@@ -17,7 +15,7 @@ export const GameLayout = ({ children }) => {
       <div
         className="game-space"
         style={{
-          backgroundColor: "#C26464",
+          backgroundColor: color,
           height: "100%",
           width: "35%",
         }}

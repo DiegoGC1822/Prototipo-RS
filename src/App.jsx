@@ -3,6 +3,8 @@ import { Menu } from "./pages/Menu";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Routes, Route } from "react-router-dom";
+import { Start } from "./pages/Start";
+import { Characters } from "./pages/Characters";
 
 function App() {
   return (
@@ -22,6 +24,14 @@ function App() {
       <Route
         path="/game"
         element={<Game />}
+      />
+      <Route
+        path="/start"
+        element={<Start />}
+      />
+      <Route
+        path="/characters"
+        element={<Characters />}
       />
     </Routes>
   );
