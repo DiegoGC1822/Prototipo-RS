@@ -6,14 +6,14 @@ export const Resource = ({ resource }) => {
     >
       <div
         className="resource"
-        style={{ position: "relative" }}
+        style={{ position: "relative", paddingTop: "20px" }}
       >
         <img
           src={resource.icon}
           alt={resource.name}
           style={{
-            height: "70px",
-            width: "70px",
+            height: "90px",
+            width: "90px",
             clipPath: `inset(${100 - resource.state}% 0 0 0)`,
             position: "absolute",
           }}
@@ -22,8 +22,8 @@ export const Resource = ({ resource }) => {
           src={resource.iconEmpty}
           alt={resource.name}
           style={{
-            height: "70px",
-            width: "70px",
+            height: "90px",
+            width: "90px",
           }}
         />
       </div>
