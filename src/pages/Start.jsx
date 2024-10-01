@@ -1,5 +1,5 @@
-import un from "../assets/university-night.svg";
-import conf from "../assets/configuration.svg";
+import un from "../assets/backgrounds/university-night.svg";
+import conf from "../assets/others/configuration.svg";
 import { MainLayout } from "../layouts/MainLayout";
 export const Start = () => {
   return (

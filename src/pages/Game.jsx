@@ -1,7 +1,7 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { PanelResources } from "../components/PanelResources";
 import { Scenario } from "../components/Scenario";
-import ud from "../assets/university-day.svg";
+import ud from "../assets/backgrounds/university-day.svg";
 
 export const Game = () => {
   return (

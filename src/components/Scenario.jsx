@@ -1,4 +1,4 @@
-import student from "../assets/student.svg";
+import student from "../assets/characters/student.svg";
 
 export const Scenario = () => {
   return (

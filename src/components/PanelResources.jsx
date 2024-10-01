@@ -1,8 +1,8 @@
 import { useState } from "react";
-import moneyIcon from "../assets/money.svg";
-import moneyEmpty from "../assets/money-empty.svg";
-import personIcon from "../assets/person.svg";
-import personEmpty from "../assets/person-empty.svg";
+import moneyIcon from "../assets/resources/money.svg";
+import moneyEmpty from "../assets/resources/money-empty.svg";
+import personIcon from "../assets/resources/person.svg";
+import personEmpty from "../assets/resources/person-empty.svg";
 import { Resource } from "./Resource";
 
 export const PanelResources = () => {
