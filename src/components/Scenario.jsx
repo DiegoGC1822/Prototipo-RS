@@ -1,58 +1,67 @@
 import student from "../assets/characters/student.svg";
+import { useResources } from "../store/useResources";
+import om from "../assets/finals/outOfMoney.svg";
+import str from "../assets/finals/strike.svg";
 
 export const Scenario = () => {
+  const { money, people } = useResources();
+
+  let final = null;
+
+  if (money === 0) {
+    final = {
+      name: "Sin dinero",
+      img: om,
+      reason: "¡Se acabo el presupuesto!",
+    };
+  }
+
+  if (people === 0) {
+    final = {
+      name: "Sin personas",
+      img: str,
+      reason: "¡Se alza una huelga!",
+    };
+  }
+
   return (
-    <>
-      <section
-        className="scenario"
+    <section
+      className="scenario"
+      style={{
+        backgroundColor: "#D9D9D9",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "55%",
+      }}
+    >
+      <h2 style={{ fontFamily: "Inria Sans", color: "#BA6060" }}>
+        {final ? final.reason : "¡Exigimos mayoneza en el comedor!"}
+      </h2>
+      <div
         style={{
-          backgroundColor: "#D9D9D9",
+          backgroundColor: "#904949",
+          width: "65%",
+          height: "70%",
+          borderRadius: "10px",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
           justifyContent: "center",
-          height: "65%",
+          alignItems: "end",
         }}
       >
-        <h2 style={{ fontFamily: "Inria Sans" }}>
-          ¡Exigimos mayonesa en el comedor!
-        </h2>
-        <div
-          className="decision"
+        <img
+          src={final ? final.img : student}
+          alt={final ? final.name : "student"}
           style={{
-            backgroundColor: "#904949",
-            width: "65%",
-            height: "70%",
-            borderRadius: "10px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "end",
+            height: "80%",
+            width: "100%",
           }}
-        >
-          <img
-            src={student}
-            alt="student"
-            style={{
-              height: "80%",
-              width: "100%",
-            }}
-          />
-        </div>
-        <h2 style={{ fontFamily: "Inria Sans" }}>Estudiante</h2>
-      </section>
-      <section
-        className="dateSurvived"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          textAlign: "center",
-        }}
-      >
-        <h1 style={{ fontFamily: "Inknut Antiqua", margin: "0" }}>2024</h1>
-        <h2 style={{ fontFamily: "Inria Sans", marginTop: "10px" }}>
-          2 meses y 3 días ejerciendo
-        </h2>
-      </section>
-    </>
+        />
+      </div>
+      <h2 style={{ fontFamily: "Inria Sans", color: "#BA6060" }}>
+        {final ? "Despedido" : "Estudiante"}
+      </h2>
+    </section>
   );
 };

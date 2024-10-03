@@ -1,3 +1,9 @@
+import { InitialLayout } from "../layouts/InitialLayout";
+
 export const Menu = () => {
-  return <div>Menu</div>;
+  return (
+    <InitialLayout tittle="Rector Simulator">
+      <h1>Menu</h1>
+    </InitialLayout>
+  );
 };

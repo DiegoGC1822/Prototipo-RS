@@ -1,3 +1,9 @@
+import { InitialLayout } from "../layouts/InitialLayout";
+
 export const Register = () => {
-  return <div>Register</div>;
+  return (
+    <InitialLayout tittle="Registrarse">
+      <h1>Register</h1>
+    </InitialLayout>
+  );
 };

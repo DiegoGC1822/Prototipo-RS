@@ -18,14 +18,14 @@ const characters = [
     unlock: true,
   },
   {
-    name: "Profesor",
+    name: "Profesora",
     img: tc,
-    unlock: false,
+    unlock: true,
   },
   {
     name: "Periodista",
     img: jr,
-    unlock: true,
+    unlock: false,
   },
 ];
 
