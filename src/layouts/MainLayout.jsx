@@ -1,23 +1,15 @@
 export const MainLayout = ({ children, background, color }) => {
   return (
     <div
-      className="game-layout"
+      className="flex h-screen justify-center bg-cover bg-center bg-no-repeat"
       style={{
-        display: "flex",
-        justifyContent: "center",
         backgroundImage: `url(${background})`,
-        backgroundSize: "cover",
-        height: "100vh",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
       }}
     >
       <div
-        className="game-space"
+        className="h-full w-[35%]"
         style={{
           backgroundColor: color,
-          height: "100%",
-          width: "35%",
         }}
       >
         {children}

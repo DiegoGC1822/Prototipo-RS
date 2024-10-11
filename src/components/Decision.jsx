@@ -5,78 +5,34 @@ export const Desicion = () => {
     useResources();
 
   const outOfResources = () => {
-    if (money === 0 || people === 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return money === 0 || people === 0;
   };
 
   return (
-    <div
-      style={{
-        height: "16%",
-        display: "flex",
-        justifyContent: "space-around",
-        margin: "12px 0",
-      }}
-    >
+    <div className="my-3 flex h-1/6 justify-around">
       <button
+        className="w-2/5 rounded-lg border-none shadow-[0px_4px_8px_rgba(0,0,0,0.3)] transition duration-300 ease-in-out hover:scale-105 hover:shadow-[0px_6px_12px_rgba(0,0,0,0.4)]"
         style={{
-          width: "40%",
-          backgroundColor: money === 0 || people === 0 ? "red" : "#D9D9D9",
-          border: "none",
-          borderRadius: "10px",
-          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
-          transition:
-            "transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.05)";
-          e.currentTarget.style.boxShadow = "0px 6px 12px rgba(0, 0, 0, 0.4)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0px 4px 8px rgba(0, 0, 0, 0.3)";
+          backgroundColor: `${outOfResources() ? "red" : "#D9D9D9"}`,
         }}
         onClick={() => {
           decreaseMoney(10);
         }}
       >
         {outOfResources() ? (
-          <h3
-            style={{
-              textAlign: "center",
-              fontFamily: "Inria Sans",
-              fontSize: "20px",
-              color: "white",
-            }}
-          >
+          <h3 className="text-center font-s text-xl font-bold text-white">
             Volver al menu
           </h3>
         ) : (
-          <h3 style={{ textAlign: "center", fontFamily: "Inria Sans" }}>
+          <h3 className="text-center font-s font-bold">
             Que les cierre el segundo piso dicen
           </h3>
         )}
       </button>
       <button
+        className="w-2/5 rounded-lg border-none shadow-[0px_4px_8px_rgba(0,0,0,0.3)] transition duration-300 ease-in-out hover:scale-105 hover:shadow-[0px_6px_12px_rgba(0,0,0,0.4)]"
         style={{
-          width: "40%",
-          backgroundColor: money === 0 || people === 0 ? "green" : "#D9D9D9",
-          border: "none",
-          borderRadius: "10px",
-          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
-          transition:
-            "transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.05)";
-          e.currentTarget.style.boxShadow = "0px 6px 12px rgba(0, 0, 0, 0.4)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0px 4px 8px rgba(0, 0, 0, 0.3)";
+          backgroundColor: `${outOfResources() ? "green" : "#D9D9D9"}`,
         }}
         onClick={() => {
           if (outOfResources()) {
@@ -88,18 +44,11 @@ export const Desicion = () => {
         }}
       >
         {outOfResources() ? (
-          <h3
-            style={{
-              textAlign: "center",
-              fontFamily: "Inria Sans",
-              fontSize: "20px",
-              color: "white",
-            }}
-          >
+          <h3 className="text-center font-s text-xl font-bold text-white">
             Jugar otra partida
           </h3>
         ) : (
-          <h3 style={{ textAlign: "center", fontFamily: "Inria Sans" }}>
+          <h3 className="text-center font-s font-bold">
             Comanse esta mayoneza
           </h3>
         )}

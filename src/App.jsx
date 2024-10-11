@@ -5,34 +5,18 @@ import { Register } from "./pages/Register";
 import { Routes, Route } from "react-router-dom";
 import { Start } from "./pages/Start";
 import { Characters } from "./pages/Characters";
+import { Records } from "./pages/Records";
 
 function App() {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={<Menu />}
-      />
-      <Route
-        path="/register"
-        element={<Register />}
-      />
-      <Route
-        path="/login"
-        element={<Login />}
-      />
-      <Route
-        path="/game"
-        element={<Game />}
-      />
-      <Route
-        path="/start"
-        element={<Start />}
-      />
-      <Route
-        path="/characters"
-        element={<Characters />}
-      />
+      <Route path="/" element={<Menu />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/game" element={<Game />} />
+      <Route path="/start" element={<Start />} />
+      <Route path="/characters" element={<Characters />} />
+      <Route path="/records" element={<Records />} />
     </Routes>
   );
 }

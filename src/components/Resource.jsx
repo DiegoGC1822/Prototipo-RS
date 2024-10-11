@@ -1,27 +1,19 @@
 export const Resource = ({ resource }) => {
   return (
-    <div
-      className="resource"
-      style={{ position: "relative", paddingTop: "10px" }}
-    >
+    <div className="relative py-[10px]">
       <img
         src={resource.icon}
         alt={resource.name}
+        className="absolute h-[90px] w-[90px]"
         style={{
-          height: "90px",
-          width: "90px",
           clipPath: `inset(${100 - resource.state}% 0 0 0)`,
-          position: "absolute",
           transition: "clip-path 0.3s ease",
         }}
       />
       <img
+        className="h-[90px] w-[90px]"
         src={resource.iconEmpty}
         alt={resource.name}
-        style={{
-          height: "90px",
-          width: "90px",
-        }}
       />
     </div>
   );

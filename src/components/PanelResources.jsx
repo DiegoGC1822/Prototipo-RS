@@ -9,7 +9,7 @@ export const PanelResources = () => {
   const { money, people } = useResources();
 
   return (
-    <section style={{ display: "flex", justifyContent: "space-around" }}>
+    <section className="flex justify-around">
       <Resource
         resource={{
           name: "Dinero",

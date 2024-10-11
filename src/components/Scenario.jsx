@@ -25,41 +25,18 @@ export const Scenario = () => {
   }
 
   return (
-    <section
-      className="scenario"
-      style={{
-        backgroundColor: "#D9D9D9",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "55%",
-      }}
-    >
-      <h2 style={{ fontFamily: "Inria Sans", color: "#BA6060" }}>
+    <section className="flex h-[55%] flex-col items-center justify-center bg-[#D9D9D9]">
+      <h2 className="font-s text-2xl text-[#BA6060]">
         {final ? final.reason : "¡Exigimos mayoneza en el comedor!"}
       </h2>
-      <div
-        style={{
-          backgroundColor: "#904949",
-          width: "65%",
-          height: "70%",
-          borderRadius: "10px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "end",
-        }}
-      >
+      <div className="mt-3 flex h-[70%] w-[65%] items-end justify-center rounded-[10px] bg-[#BA6060]">
         <img
+          className="h-4/5 w-full"
           src={final ? final.img : student}
           alt={final ? final.name : "student"}
-          style={{
-            height: "80%",
-            width: "100%",
-          }}
         />
       </div>
-      <h2 style={{ fontFamily: "Inria Sans", color: "#BA6060" }}>
+      <h2 className="font-s text-2xl text-[#BA6060]">
         {final ? "Despedido" : "Estudiante"}
       </h2>
     </section>
