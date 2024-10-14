@@ -1,34 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
-import musicFile from '../assets/audio/Daddy Castle.mp3';  // Ruta del archivo de música
-
-export const SettingsPage = ({ onClose }) => {
-  const [isPlaying, setIsPlaying] = useState(false);  // Estado para saber si la música está sonando
-  const audioRef = useRef(new Audio(musicFile));  // Referencia al objeto de audio
-
-  // Manejar el ciclo infinito de la música
-  useEffect(() => {
-    const audio = audioRef.current;
-    audio.volume = 0.2;
-
-  
-    if (isPlaying) {
-      audio.play();
-      audio.loop = true;  // Repetir en bucle
-    } else {
-      audio.pause();
-    }
-
-    // Limpiar el audio cuando el componente se desmonta
-    return () => {
-      audio.pause();
-    };
-  }, [isPlaying]);
-
-  // Función para alternar entre reproducir y pausar la música
-  const toggleMusic = () => {
-    setIsPlaying(!isPlaying);
-  };
-
+export const SettingsPage = ({ onClose, isPlaying, toggleMusic }) => {
   return (
     <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-90 text-white p-8 flex flex-col justify-between">
       <div className="flex justify-between items-center">
@@ -38,7 +8,7 @@ export const SettingsPage = ({ onClose }) => {
         </button>
       </div>
       <div className="mt-4">
-        <p className="text-lg">Versión del juego: 0.1</p>
+        <p className="text-lg">Versión del juego: 2.1</p>
         <hr className="my-4 border-gray-600" />
         <div className="flex justify-between items-center my-4">
           <p className="text-xl">Música</p>

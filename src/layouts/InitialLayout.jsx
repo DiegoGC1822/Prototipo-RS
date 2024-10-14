@@ -1,10 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import un from "../assets/backgrounds/university-night.svg";
 import conf from "../assets/others/configuration.svg";
+import musicFile from '../assets/audio/Daddy Castle.mp3';  // Ruta del archivo de música
 import { SettingsPage } from "../pages/SettingsPage";
 
 export const InitialLayout = ({ tittle, children, confb, ret, mt }) => {
   const [showSettings, setShowSettings] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);  // Estado para controlar si la música está sonando
+  const audioRef = useRef(new Audio(musicFile));  // Referencia del objeto de audio
+
+  // Efecto para manejar la reproducción de música
+  useEffect(() => {
+    const audio = audioRef.current;
+    audio.volume = 0.2;  // Ajustar el volumen al 20%
+
+    if (isPlaying) {
+      audio.play();
+      audio.loop = true;  // Repetir en bucle
+    } else {
+      audio.pause();
+    }
+
+    // Limpiar el audio cuando el componente se desmonta
+    return () => {
+      audio.pause();
+    };
+  }, [isPlaying]);
+
+  // Función para alternar la música desde cualquier parte de la web
+  const toggleMusic = () => {
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <div
@@ -20,10 +46,17 @@ export const InitialLayout = ({ tittle, children, confb, ret, mt }) => {
       >
         {children}
       </div>
-      
-      {/* Condicional para mostrar la página de configuración */}
-      {showSettings && <SettingsPage onClose={() => setShowSettings(false)} />}
 
+      {/* Mostrar página de configuración */}
+      {showSettings && (
+        <SettingsPage
+          onClose={() => setShowSettings(false)}
+          isPlaying={isPlaying}
+          toggleMusic={toggleMusic}
+        />
+      )}
+
+      {/* Botón de configuración */}
       {confb && (
         <div
           className="absolute bottom-5 right-10 rounded-3xl bg-[#d77b74] p-2 transition-colors duration-300 hover:bg-[#b95f5b] cursor-pointer"
