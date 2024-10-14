@@ -1,4 +1,5 @@
 import { useResources } from "../store/useResources";
+import { Link } from "react-router-dom";
 
 export const Desicion = () => {
   const { money, people, decreasePeople, decreaseMoney, setMoney, setPeople } =
@@ -16,13 +17,20 @@ export const Desicion = () => {
           backgroundColor: `${outOfResources() ? "red" : "#D9D9D9"}`,
         }}
         onClick={() => {
-          decreaseMoney(10);
+          if (outOfResources()) {
+            setMoney(100);
+            setPeople(100);
+          } else {
+            decreaseMoney(10);
+          }
         }}
       >
         {outOfResources() ? (
-          <h3 className="text-center font-s text-xl font-bold text-white">
-            Volver al menu
-          </h3>
+          <Link to="/">
+            <h3 className="text-center font-s text-xl font-bold text-white">
+              Volver al menu
+            </h3>
+          </Link>
         ) : (
           <h3 className="text-center font-s font-bold">
             Que les cierre el segundo piso dicen

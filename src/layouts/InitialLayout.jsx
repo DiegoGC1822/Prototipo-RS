@@ -1,36 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import { useConfig } from "../store/useConfig";
 import un from "../assets/backgrounds/university-night.svg";
 import conf from "../assets/others/configuration.svg";
-import musicFile from '../assets/audio/Daddy Castle.mp3';  // Ruta del archivo de música
-import { SettingsPage } from "../pages/SettingsPage";
+import { Settings } from "../components/Settings";
+import { Link } from "react-router-dom";
 
 export const InitialLayout = ({ tittle, children, confb, ret, mt }) => {
-  const [showSettings, setShowSettings] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);  // Estado para controlar si la música está sonando
-  const audioRef = useRef(new Audio(musicFile));  // Referencia del objeto de audio
-
-  // Efecto para manejar la reproducción de música
-  useEffect(() => {
-    const audio = audioRef.current;
-    audio.volume = 0.2;  // Ajustar el volumen al 20%
-
-    if (isPlaying) {
-      audio.play();
-      audio.loop = true;  // Repetir en bucle
-    } else {
-      audio.pause();
-    }
-
-    // Limpiar el audio cuando el componente se desmonta
-    return () => {
-      audio.pause();
-    };
-  }, [isPlaying]);
-
-  // Función para alternar la música desde cualquier parte de la web
-  const toggleMusic = () => {
-    setIsPlaying(!isPlaying);
-  };
+  const { showSettings, setShowSettings } = useConfig();
 
   return (
     <div
@@ -48,18 +23,12 @@ export const InitialLayout = ({ tittle, children, confb, ret, mt }) => {
       </div>
 
       {/* Mostrar página de configuración */}
-      {showSettings && (
-        <SettingsPage
-          onClose={() => setShowSettings(false)}
-          isPlaying={isPlaying}
-          toggleMusic={toggleMusic}
-        />
-      )}
+      {showSettings && <Settings />}
 
       {/* Botón de configuración */}
       {confb && (
         <div
-          className="absolute bottom-5 right-10 rounded-3xl bg-[#d77b74] p-2 transition-colors duration-300 hover:bg-[#b95f5b] cursor-pointer"
+          className="absolute bottom-5 right-10 cursor-pointer rounded-3xl bg-[#d77b74] p-2 transition-colors duration-300 hover:bg-[#b95f5b]"
           onClick={() => setShowSettings(true)}
         >
           <img src={conf} alt="configuration" className="h-[50px] w-[50px]" />
@@ -68,7 +37,7 @@ export const InitialLayout = ({ tittle, children, confb, ret, mt }) => {
 
       {ret && (
         <button className="absolute bottom-5 left-10 bg-[#d77b74] p-4 font-p text-2xl text-white">
-          Volver
+          <Link to="/">Volver</Link>
         </button>
       )}
     </div>
