@@ -1,66 +1,52 @@
 import { useResources } from "../store/useResources";
-import { Link } from "react-router-dom";
+import { useEvent } from "../store/useEvent";
+import { ButtonDe } from "./ui/ButtonDe";
 
 export const Desicion = () => {
-  const { money, people, decreasePeople, decreaseMoney, setMoney, setPeople } =
+  const { money, people, impactMoney, impactPeople, setMoney, setPeople } =
     useResources();
 
+  const { event, getEvent } = useEvent();
+
   const outOfResources = () => {
-    return money === 0 || people === 0;
+    return money < 0 || people < 0;
+  };
+
+  const consecuence = (resource, action) => {
+    if (outOfResources()) {
+      setMoney(100);
+      setPeople(100);
+    } else {
+      resource === "dinero" ? impactMoney(action) : impactPeople(action);
+      getEvent({ dinero: money, aprobacion: people });
+    }
   };
 
   return (
     <div className="my-3 flex h-1/6 justify-around">
-      <button
-        className="w-2/5 rounded-lg border-none shadow-[0px_4px_8px_rgba(0,0,0,0.3)] transition duration-300 ease-in-out hover:scale-105 hover:shadow-[0px_6px_12px_rgba(0,0,0,0.4)]"
-        style={{
-          backgroundColor: `${outOfResources() ? "red" : "#D9D9D9"}`,
-        }}
-        onClick={() => {
-          if (outOfResources()) {
-            setMoney(100);
-            setPeople(100);
-          } else {
-            decreaseMoney(10);
-          }
-        }}
-      >
-        {outOfResources() ? (
-          <Link to="/">
-            <h3 className="text-center font-s text-xl font-bold text-white">
-              Volver al menu
-            </h3>
-          </Link>
-        ) : (
-          <h3 className="text-center font-s font-bold">
-            Que les cierre el segundo piso dicen
-          </h3>
-        )}
-      </button>
-      <button
-        className="w-2/5 rounded-lg border-none shadow-[0px_4px_8px_rgba(0,0,0,0.3)] transition duration-300 ease-in-out hover:scale-105 hover:shadow-[0px_6px_12px_rgba(0,0,0,0.4)]"
-        style={{
-          backgroundColor: `${outOfResources() ? "green" : "#D9D9D9"}`,
-        }}
-        onClick={() => {
-          if (outOfResources()) {
-            setMoney(100);
-            setPeople(100);
-          } else {
-            decreasePeople(10);
-          }
-        }}
-      >
-        {outOfResources() ? (
-          <h3 className="text-center font-s text-xl font-bold text-white">
-            Jugar otra partida
-          </h3>
-        ) : (
-          <h3 className="text-center font-s font-bold">
-            Comanse esta mayoneza
-          </h3>
-        )}
-      </button>
+      <ButtonDe
+        bg="red"
+        onClick={() =>
+          consecuence(
+            event.decision1.consecuencia.recurso,
+            event.decision1.consecuencia.accion,
+          )
+        }
+        decision={event.decision1.decision}
+        outOfResources={outOfResources}
+      />
+      <ButtonDe
+        bg="green"
+        isReplay={true}
+        onClick={() =>
+          consecuence(
+            event.decision2.consecuencia.recurso,
+            event.decision2.consecuencia.accion,
+          )
+        }
+        decision={event.decision2.decision}
+        outOfResources={outOfResources}
+      />
     </div>
   );
 };

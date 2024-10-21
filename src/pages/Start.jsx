@@ -3,9 +3,12 @@ import conf from "../assets/others/configuration.svg";
 import { MainLayout } from "../layouts/MainLayout";
 import { Link } from "react-router-dom";
 import { useConfig } from "../store/useConfig";
+import { useEvent } from "../store/useEvent";
 
 export const Start = () => {
   const { setShowSettings } = useConfig();
+
+  const { startGame, getEvent } = useEvent();
 
   return (
     <MainLayout background={un} color="#C26464">
@@ -22,6 +25,10 @@ export const Start = () => {
       <Link
         to="/game"
         className="mt-[15px] flex h-[15%] w-full items-center justify-center bg-[#5A2F2F] font-s text-2xl text-white duration-300 hover:opacity-85"
+        onClick={() => {
+          startGame();
+          getEvent({ dinero: 100, aprobacion: 100 });
+        }}
       >
         Continuar
       </Link>
